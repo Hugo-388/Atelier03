@@ -48,8 +48,8 @@
             <TextField fx:id="txfPersonAdresse" GridPane.columnIndex="1" GridPane.rowIndex="6" />
             <TextField fx:id="txfPersonCodePostal" GridPane.columnIndex="1" GridPane.rowIndex="7" />
             <TextField fx:id="txfPersonVille" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-            <DatePicker fx:id="dapPersonDateDeNaissance" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <ComboBox fx:id="cbxCivilite" editable="true" prefWidth="150.0" GridPane.columnIndex="1" />
+            <DatePicker fx:id="dapPersonDateNaissance" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <ComboBox fx:id="cbxCivilite" prefWidth="150.0" GridPane.columnIndex="1" />
          </children>
       </GridPane>
       <TextArea fx:id="txaErreurs" layoutX="13.0" layoutY="382.0" prefHeight="83.0" prefWidth="383.0" />
