@@ -12,10 +12,9 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-
-<AnchorPane prefHeight="500.0" prefWidth="400.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/22" fx:controller="controller.personDefinitionController">
+<AnchorPane prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.personDefinitionController">
    <children>
-      <Label layoutX="114.0" layoutY="28.0" text="Modification d'une personne" />
+      <Label fx:id="lblTitre" layoutX="114.0" layoutY="28.0" text="Modification d'une personne" />
       <GridPane layoutX="88.0" layoutY="83.0" prefHeight="298.0" prefWidth="224.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -42,22 +41,22 @@
             <Label text="Code postal :" GridPane.rowIndex="7" />
             <Label text="Adresse :" GridPane.rowIndex="6" />
             <Label text="Ville :" GridPane.rowIndex="8" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="7" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="8" />
-            <DatePicker GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <ComboBox prefWidth="150.0" GridPane.columnIndex="1" />
+            <TextField fx:id="txfPersonNom" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="txfPersonPrenom" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="txfPersonPortable" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="txfPersonEmail" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="txfPersonAdresse" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <TextField fx:id="txfPersonCodePostal" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <TextField fx:id="txfPersonVille" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+            <DatePicker fx:id="dapPersonDateDeNaissance" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <ComboBox fx:id="cbxCivilite" editable="true" prefWidth="150.0" GridPane.columnIndex="1" />
          </children>
       </GridPane>
-      <TextArea layoutX="13.0" layoutY="382.0" prefHeight="83.0" prefWidth="383.0" />
+      <TextArea fx:id="txaErreurs" layoutX="13.0" layoutY="382.0" prefHeight="83.0" prefWidth="383.0" />
       <ButtonBar layoutX="200.0" layoutY="460.0" prefHeight="40.0" prefWidth="200.0">
         <buttons>
-          <Button mnemonicParsing="false" text="Annuler" />
-            <Button mnemonicParsing="false" text="Valider" />
+          <Button fx:id="btnAnnuler" mnemonicParsing="false" onMouseClicked="#evtOnMouseClickedBtnAnnuler" text="Annuler" />
+            <Button fx:id="btnValider" mnemonicParsing="false" onMouseClicked="#evtOnMouseClickedBtnValider" text="Valider" />
         </buttons>
       </ButtonBar>
    </children>

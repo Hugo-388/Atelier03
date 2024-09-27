@@ -3,11 +3,16 @@ package controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import model.Person;
 
 public class PersonManagementController {
@@ -46,6 +51,21 @@ public class PersonManagementController {
 
 	@FXML
 	private void evtOnMouseClickedBtnRajouter() {
+		try { 
+			FXMLLoader loader  = new FXMLLoader(); 
+			loader.setLocation(getClass().getResource("/view/PersonDefinition.fxml")); 
+			AnchorPane root    
+			= (AnchorPane) loader.load();    
+			Scene scene = new Scene(root); 
+			Stage definitionStage  
+			= new Stage(); 
+			definitionStage.setScene(scene); 
+			definitionStage.setTitle("Définition d'une personne"); 
+			definitionStage.initModality(Modality.APPLICATION_MODAL); 
+			definitionStage.showAndWait(); 
+		} catch(Exception e) { 
+			e.printStackTrace(); 
+		} 
 	}
 
 	@FXML
