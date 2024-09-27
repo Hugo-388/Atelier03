@@ -35,6 +35,7 @@ public class personDefinitionController {
 	/** Attributs de la classe **/
 	private Person person = null;
 	private ObservableList<Civilite> listeCivilite = FXCollections.observableArrayList();
+	public boolean isBtnValiderClicked = false;
 
 	/** Constantes de la classe **/
 	private static final String CR = "\n";
@@ -45,41 +46,49 @@ public class personDefinitionController {
 		stage.close();     
 	}
 
-	@FXML private void evtOnMouseClickedBtnValider() {
+	@FXML
+	private void evtOnMouseClickedBtnValider() {
+		String erreur = "";
+
 		if (txfPersonNom.getText().isBlank()) {
-			txaErreurs.setVisible(true); 
-			txaErreurs.setText("Saisir le nom");
+			erreur += "Saisir le nom\n";
 		}
 		if (txfPersonPrenom.getText().isBlank()) {
-			txaErreurs.setVisible(true); 
-			txaErreurs.setText("Saisir le prénom");
+			erreur += "Saisir le prénom\n";
 		}
 		if (txfPersonPortable.getText().isBlank() || txfPersonPortable.getText().length() != 14) {
-			txaErreurs.setVisible(true); 
-			txaErreurs.setText("Saisir un portable valide");
+			erreur += "Saisir un portable valide\n";
 		}
-		if (txfPersonEmail.getText().isBlank() || !txfPersonEmail.getText().contains("@")){
-			txaErreurs.setVisible(true); 
-			txaErreurs.setText("Saisir une adresse Email valide");
+		if (txfPersonEmail.getText().isBlank() || !txfPersonEmail.getText().contains("@")) {
+			erreur += "Saisir une adresse Email valide\n";
 		}
 		if (txfPersonAdresse.getText().isBlank()) {
-			txaErreurs.setVisible(true); 
-			txaErreurs.setText("Saisir l'adresse");
+			erreur += "Saisir l'adresse\n";
 		}
 		if (txfPersonCodePostal.getText().isBlank()) {
-			txaErreurs.setVisible(true); 
-			txaErreurs.setText("Saisir le code postal");
+			erreur += "Saisir le code postal\n";
 		}
 		if (txfPersonVille.getText().isBlank()) {
-			txaErreurs.setVisible(true); 
-			txaErreurs.setText("Saisir la ville");
+			erreur += "Saisir la ville\n";
 		}
-		if (dapPersonDateNaissance.getAccessibleText().isBlank()) {
-			txaErreurs.setVisible(true); 
-			txaErreurs.setText("Saisir la date de naissance");
+		if (dapPersonDateNaissance.getValue() == null) {
+			erreur += "Saisir la date de naissance\n";
+		}
+
+		if (!erreur.isEmpty()) {
+			txaErreurs.setVisible(true);
+			txaErreurs.setText(erreur);
 		} else {
 			validerPersonne();
-		}	
+			isBtnValiderClicked = true;
+		}
+	}
+	public boolean isBtnValiderClicked() {
+		return isBtnValiderClicked;
+	}
+
+	public void setBtnValiderClicked(boolean isBtnValiderClicked) {
+		this.isBtnValiderClicked = isBtnValiderClicked;
 	}
 
 	private void validerPersonne() {

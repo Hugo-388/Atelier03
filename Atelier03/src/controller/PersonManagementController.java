@@ -57,15 +57,25 @@ public class PersonManagementController {
 			AnchorPane root    
 			= (AnchorPane) loader.load();    
 			Scene scene = new Scene(root); 
-			Stage definitionStage  
-			= new Stage(); 
+
+			personDefinitionController controler = loader.getController();
+			Stage definitionStage = new Stage(); 
 			definitionStage.setScene(scene); 
 			definitionStage.setTitle("Définition d'une personne"); 
-			definitionStage.initModality(Modality.APPLICATION_MODAL); 
+			definitionStage.initModality(Modality.APPLICATION_MODAL);
 			definitionStage.showAndWait(); 
+			
+			System.out.println(controler.isBtnValiderClicked());
+			if (controler.isBtnValiderClicked()) {
+                personDonnees.add(controler.getPerson());
+                System.out.println(controler.getPerson().getPersonEmail());
+			}
+				
 		} catch(Exception e) { 
 			e.printStackTrace(); 
-		} 
+		}
+
+
 	}
 
 	@FXML
