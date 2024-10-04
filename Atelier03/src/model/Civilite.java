@@ -26,7 +26,11 @@ public class Civilite {
 	@Override
 	public String toString() {
 		return civiliteLbl;
-	} 
+	}
+
+	public int getCiviliteIdt() {
+		return civiliteIdt;
+	}
 
 
 

@@ -34,6 +34,9 @@ public class personDefinitionController {
 
 	/** Attributs de la classe **/
 	private Person person = null;
+	private String traitement = ""; 
+	private int identifiantCreate = 0; 
+
 	private ObservableList<Civilite> listeCivilite = FXCollections.observableArrayList();
 	public boolean isBtnValiderClicked = false;
 
@@ -82,6 +85,11 @@ public class personDefinitionController {
 			validerPersonne();
 			isBtnValiderClicked = true;
 		}
+
+		if(traitement.equals("create")) { 
+			person = new Person(); 
+			person.setPersonId(identifiantCreate); 
+		} 
 	}
 	public boolean isBtnValiderClicked() {
 		return isBtnValiderClicked;
@@ -127,4 +135,46 @@ public class personDefinitionController {
 		dapPersonDateNaissance.setValue(LocalDate.now().minusYears(18)); 
 		txaErreurs.setVisible(false); 
 	}
-}
+
+	public void setLblTitre(String titre) { 
+		lblTitre.setText(titre); 
+	} 
+
+	public void setTraitement(String trt) { 
+		//TODO A verifier si cela marche
+		this.traitement = trt; 
+		if(traitement.equals("delete")) { 
+		txfPersonNom.setDisable(true); 
+		txfPersonPrenom.setDisable(true); 
+		txfPersonPortable.setDisable(true); 
+		txfPersonEmail.setDisable(true); 
+		txfPersonAdresse.setDisable(true); 
+		txfPersonCodePostal.setDisable(true); 
+		txfPersonVille.setDisable(true); 
+		cbxCivilite.setDisable(true); 
+		dapPersonDateNaissance.setDisable(true); 
+		} 
+	} 
+	public void setPerson(Person personne) { 
+
+		this.person = personne; 
+		int index   = 0; 
+		for(Civilite civilite :listeCivilite) { 
+			if(civilite.getCiviliteIdt()==person.getPersonCivilite()) break; 
+			index++; 
+		} 
+		cbxCivilite.getSelectionModel().select(index); 
+		txfPersonNom.setText(person.getPersonNom()); 
+		txfPersonPrenom.setText(person.getPersonPrenom()); 
+		txfPersonPortable.setText(person.getPersonPortable()); 
+		txfPersonEmail.setText(person.getPersonEmail()); 
+		txfPersonAdresse.setText(person.getPersonAdresse()); 
+		txfPersonCodePostal.setText(person.getPersonCodePostal()); 
+		txfPersonVille.setText(person.getPersonVille()); 
+		dapPersonDateNaissance.setValue(person.getPersonDateDeNaissance()); 
+	} 
+	
+	public void setIdentifiantCreate(int newIdentifiant) { 
+		this.identifiantCreate = newIdentifiant; 
+	}
+} 
