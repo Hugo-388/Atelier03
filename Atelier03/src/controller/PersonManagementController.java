@@ -41,11 +41,11 @@ public class PersonManagementController {
 
 	@FXML
 	private void initialize() {
-		personDonnees.add(new Person(1, "Moureaux", "Hugo"));
-		personDonnees.add(new Person(1, "Moureaux", "Hugo"));
-		personDonnees.add(new Person(1, "Moureaux", "Hugo"));
-		personDonnees.add(new Person(1, "Moureaux", "Hugo"));
-		personDonnees.add(new Person(1, "Moureaux", "Hugo"));
+		personDonnees.add(new Person(0, "Moureaux", "Hugo"));
+		personDonnees.add(new Person(1, "Dupont", "Marie"));
+		personDonnees.add(new Person(2, "Martin", "Lucas"));
+		personDonnees.add(new Person(3, "Dubois", "Sophie"));
+		personDonnees.add(new Person(4, "Lefebvre", "Thomas"));
 
 		tcNom.setCellValueFactory(cellDataFeatures -> cellDataFeatures.getValue().getPersonNomProperty());
 		tcPrenom.setCellValueFactory(cellDataFeatures -> cellDataFeatures.getValue().getPersonPrenomProperty());
@@ -65,8 +65,8 @@ public class PersonManagementController {
 			controller.setTraitement("create"); 
 			int idtMax = 0; 
 			for(Person personne : personDonnees) { 
-			if(personne.getPersonId()>idtMax) idtMax = 
-			personne.getPersonId(); 
+				if(personne.getPersonId()>idtMax) idtMax = 
+						personne.getPersonId(); 
 			} 
 			idtMax++; 
 			controller.setIdentifiantCreate(idtMax);
