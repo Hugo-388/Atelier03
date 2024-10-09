@@ -14,6 +14,9 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Civilite;
 import model.Person;
+import static bdd.CiviliteBdd.selectAllCivilites;
+
+
 
 public class personDefinitionController {
 
@@ -125,11 +128,13 @@ public class personDefinitionController {
 
 	/** Méthode initialize **/
 	@FXML private void initialize() {
+		
+		listeCivilite = selectAllCivilites();
 		/** Remplissage de la combobox des civilités  
 		 * et affectation à la combobox  
 		 **/ 
-		listeCivilite.add(new Civilite(1, "Monsieur", "M.")); 
-		listeCivilite.add(new Civilite(2, "Madame", "Mme")); 
+		//listeCivilite.add(new Civilite(1, "Monsieur", "M.")); 
+		//listeCivilite.add(new Civilite(2, "Madame", "Mme")); 
 		cbxCivilite.setItems(listeCivilite); 
 
 		dapPersonDateNaissance.setValue(LocalDate.now().minusYears(18)); 
