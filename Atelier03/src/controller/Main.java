@@ -26,4 +26,3 @@ public class Main extends Application {
 	}
 
 }
-.3+6.39.+
