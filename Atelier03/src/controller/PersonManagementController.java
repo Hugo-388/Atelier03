@@ -16,7 +16,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.Civilite;
 import model.Person;
+import static bdd.CiviliteBdd.selectOneCivilite; 
+import static bdd.PersonBdd.selectAllPersons;
+
 
 public class PersonManagementController {
 
@@ -37,19 +41,27 @@ public class PersonManagementController {
 	@FXML private Button btnSupprimer;
 
 	private ObservableList<Person> personDonnees = FXCollections.observableArrayList();
+
 	private Person personSelected;
 
 	@FXML
 	private void initialize() {
+		/*
 		personDonnees.add(new Person(0, "Moureaux", "Hugo"));
 		personDonnees.add(new Person(1, "Dupont", "Marie"));
 		personDonnees.add(new Person(2, "Martin", "Lucas"));
 		personDonnees.add(new Person(3, "Dubois", "Sophie"));
 		personDonnees.add(new Person(4, "Lefebvre", "Thomas"));
 
+		 */
+
+		ObservableList<Person> listePersonne = selectAllPersons();
+		
+		
+		
 		tcNom.setCellValueFactory(cellDataFeatures -> cellDataFeatures.getValue().getPersonNomProperty());
 		tcPrenom.setCellValueFactory(cellDataFeatures -> cellDataFeatures.getValue().getPersonPrenomProperty());
-		tvDonnees.setItems(personDonnees);
+		tvDonnees.setItems(listePersonne);
 	}
 
 	@FXML
@@ -122,7 +134,8 @@ public class PersonManagementController {
 				}
 				tvDonnees.refresh(); 
 
-				lblCivilite.setText((personSelected.getPersonCivilite() == 1) ? "Monsieur" : "Madame");
+				Civilite civilite = selectOneCivilite(personSelected.getPersonCivilite()); 
+				lblCivilite.setText(civilite.getCiviliteLbl());
 				lblNom.setText(personSelected.getPersonNom());
 				lblPrenom.setText(personSelected.getPersonPrenom());
 				lblPortable.setText(personSelected.getPersonPortable());

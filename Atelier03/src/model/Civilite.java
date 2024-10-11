@@ -10,7 +10,7 @@ public class Civilite {
 	private String civiliteLbl; 
 	private String civiliteLbc;
 
-	
+
 
 	public Civilite(int civiliteIdt, String civiliteLbl, String civiliteLbc) {
 		super();
@@ -22,7 +22,7 @@ public class Civilite {
 	public String affichage() {
 		return "Civilite [civiliteIdt=" + civiliteIdt + ", civiliteLbl=" + civiliteLbl + ", civiliteLbc=" + civiliteLbc + "]";
 	} 
-	
+
 	@Override
 	public String toString() {
 		return civiliteLbl;
@@ -32,6 +32,13 @@ public class Civilite {
 		return civiliteIdt;
 	}
 
+	public String getCiviliteLbl() {
+		return civiliteLbl;
+	}
+
+	public void setCiviliteLbl(String civiliteLbl) {
+		this.civiliteLbl = civiliteLbl;
+	}
 
 
 }

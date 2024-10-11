@@ -16,6 +16,8 @@ public class Person {
 	private String personAdresse;
 	private String personCodePostal;
 	private String personVille;
+	private String personLogin;
+	private String personPwd;
 
 
 	public Person() {
@@ -40,8 +42,25 @@ public class Person {
 
 
 
-	public int getPersonId() {
-		return personId;
+
+	public Person(int personidt, int personCivilite, String personNom, String personPrenom, String personPortable,
+			String personEmail, LocalDate personDateNaissance, String personAdresse, String personCodePostal,
+			String personVille, String personLogin, String personPwd) {
+		// TODO Auto-generated constructor stub
+		super();
+		this.personId = personidt;
+		this.personCivilite = personCivilite;
+		this.personNom = new SimpleStringProperty(personNom);
+		this.personPrenom = new SimpleStringProperty(personPrenom);
+		this.personPortable = personPortable;
+		this.personEmail = personEmail;
+		this.personDateDeNaissance = personDateNaissance;
+		this.personAdresse = personAdresse;
+		this.personCodePostal = personCodePostal;
+		this.personVille = personVille;
+		this.personLogin = personLogin;
+		this.personPwd = personPwd;
+
 	}
 
 
@@ -163,8 +182,13 @@ public class Person {
 	public void setPersonVille(String personVille) {
 		this.personVille = personVille;
 	}
-	
-	
-	
-	
+
+
+	public int getPersonId() {
+		return personId;
+	}
+
+
+
+
 }

@@ -128,7 +128,7 @@ public class personDefinitionController {
 
 	/** Méthode initialize **/
 	@FXML private void initialize() {
-		
+
 		listeCivilite = selectAllCivilites();
 		/** Remplissage de la combobox des civilités  
 		 * et affectation à la combobox  
@@ -136,6 +136,14 @@ public class personDefinitionController {
 		//listeCivilite.add(new Civilite(1, "Monsieur", "M.")); 
 		//listeCivilite.add(new Civilite(2, "Madame", "Mme")); 
 		cbxCivilite.setItems(listeCivilite); 
+
+		/** Monsieur par défaut **/ 
+		int index = 0; 
+		for(Civilite civilite : listeCivilite) { 
+			if(civilite.getCiviliteLbl().equals("Monsieur"))break; 
+			index++; 
+		} 
+		cbxCivilite.getSelectionModel().select(index);
 
 		dapPersonDateNaissance.setValue(LocalDate.now().minusYears(18)); 
 		txaErreurs.setVisible(false); 
@@ -149,15 +157,15 @@ public class personDefinitionController {
 		//TODO A verifier si cela marche
 		this.traitement = trt; 
 		if(traitement.equals("delete")) { 
-		txfPersonNom.setDisable(true); 
-		txfPersonPrenom.setDisable(true); 
-		txfPersonPortable.setDisable(true); 
-		txfPersonEmail.setDisable(true); 
-		txfPersonAdresse.setDisable(true); 
-		txfPersonCodePostal.setDisable(true); 
-		txfPersonVille.setDisable(true); 
-		cbxCivilite.setDisable(true); 
-		dapPersonDateNaissance.setDisable(true); 
+			txfPersonNom.setDisable(true); 
+			txfPersonPrenom.setDisable(true); 
+			txfPersonPortable.setDisable(true); 
+			txfPersonEmail.setDisable(true); 
+			txfPersonAdresse.setDisable(true); 
+			txfPersonCodePostal.setDisable(true); 
+			txfPersonVille.setDisable(true); 
+			cbxCivilite.setDisable(true); 
+			dapPersonDateNaissance.setDisable(true); 
 		} 
 	} 
 	public void setPerson(Person personne) { 
@@ -178,7 +186,7 @@ public class personDefinitionController {
 		txfPersonVille.setText(person.getPersonVille()); 
 		dapPersonDateNaissance.setValue(person.getPersonDateDeNaissance()); 
 	} 
-	
+
 	public void setIdentifiantCreate(int newIdentifiant) { 
 		this.identifiantCreate = newIdentifiant; 
 	}
