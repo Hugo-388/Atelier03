@@ -179,6 +179,30 @@ public class Person {
 
 
 
+	public String getPersonLogin() {
+		return personLogin;
+	}
+
+
+
+	public void setPersonLogin(String personLogin) {
+		this.personLogin = personLogin;
+	}
+
+
+
+	public String getPersonPwd() {
+		return personPwd;
+	}
+
+
+
+	public void setPersonPwd(String personPwd) {
+		this.personPwd = personPwd;
+	}
+
+
+
 	public void setPersonVille(String personVille) {
 		this.personVille = personVille;
 	}

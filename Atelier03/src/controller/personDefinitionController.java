@@ -15,6 +15,10 @@ import javafx.stage.Stage;
 import model.Civilite;
 import model.Person;
 import static bdd.CiviliteBdd.selectAllCivilites;
+import static bdd.PersonBdd.insertPerson;
+import static bdd.PersonBdd.updatePerson;
+import static bdd.PersonBdd.deletePerson;
+
 
 
 
@@ -31,6 +35,9 @@ public class personDefinitionController {
 	@FXML private TextField txfPersonCodePostal; 
 	@FXML private TextField txfPersonVille; 
 	@FXML private DatePicker dapPersonDateNaissance; 
+	@FXML private TextField txfPersonLogin; 
+	@FXML private TextField txfPersonPwd; 
+
 	@FXML private Button btnAnnuler; 
 	@FXML private Button btnValider; 
 	@FXML private TextArea txaErreurs;
@@ -85,14 +92,27 @@ public class personDefinitionController {
 			txaErreurs.setVisible(true);
 			txaErreurs.setText(erreur);
 		} else {
+			if(traitement.equals("create")) { 
+				person = new Person(); 
+			} 
 			validerPersonne();
+
+			if (traitement.equals("create")) {
+				insertPerson(person);
+			} else if (traitement.equals("update")) {
+				// modification
+				updatePerson(person);
+			} else {
+				// Suppresion
+				deletePerson(person);
+			}
+
 			isBtnValiderClicked = true;
+			evtOnMouseClickedBtnAnnuler();
 		}
 
-		if(traitement.equals("create")) { 
-			person = new Person(); 
-			person.setPersonId(identifiantCreate); 
-		} 
+
+
 	}
 	public boolean isBtnValiderClicked() {
 		return isBtnValiderClicked;
@@ -104,9 +124,7 @@ public class personDefinitionController {
 
 	private void validerPersonne() {
 
-
-		person = new Person();
-
+		person.setPersonCivilite(cbxCivilite.getSelectionModel().getSelectedItem().getCiviliteIdt());
 		person.setPersonNom(txfPersonNom.getText());
 		person.setPersonPrenom(txfPersonPrenom.getText());
 		person.setPersonPortable(txfPersonPortable.getText());
@@ -115,6 +133,8 @@ public class personDefinitionController {
 		person.setPersonCodePostal(txfPersonCodePostal.getText());
 		person.setPersonVille(txfPersonVille.getText());
 		person.setPersonDateDeNaissance(dapPersonDateNaissance.getValue());
+		person.setPersonLogin(txfPersonLogin.getText());
+		person.setPersonPwd(txfPersonPwd.getText());
 		Stage stage = (Stage) btnAnnuler.getScene().getWindow();
 		stage.close();	
 
@@ -154,7 +174,6 @@ public class personDefinitionController {
 	} 
 
 	public void setTraitement(String trt) { 
-		//TODO A verifier si cela marche
 		this.traitement = trt; 
 		if(traitement.equals("delete")) { 
 			txfPersonNom.setDisable(true); 
@@ -165,7 +184,9 @@ public class personDefinitionController {
 			txfPersonCodePostal.setDisable(true); 
 			txfPersonVille.setDisable(true); 
 			cbxCivilite.setDisable(true); 
-			dapPersonDateNaissance.setDisable(true); 
+			dapPersonDateNaissance.setDisable(true);
+			txfPersonLogin.setDisable(true);
+			txfPersonPwd.setDisable(true);
 		} 
 	} 
 	public void setPerson(Person personne) { 
@@ -173,7 +194,7 @@ public class personDefinitionController {
 		this.person = personne; 
 		int index   = 0; 
 		for(Civilite civilite :listeCivilite) { 
-			if(civilite.getCiviliteIdt()==person.getPersonCivilite()) break; 
+			if(civilite.getCiviliteIdt() == person.getPersonCivilite()) break; 
 			index++; 
 		} 
 		cbxCivilite.getSelectionModel().select(index); 
@@ -185,6 +206,10 @@ public class personDefinitionController {
 		txfPersonCodePostal.setText(person.getPersonCodePostal()); 
 		txfPersonVille.setText(person.getPersonVille()); 
 		dapPersonDateNaissance.setValue(person.getPersonDateDeNaissance()); 
+		txfPersonLogin.setText(person.getPersonLogin()); 
+		txfPersonPwd.setText(person.getPersonPwd()); 
+
+		
 	} 
 
 	public void setIdentifiantCreate(int newIdentifiant) { 

@@ -56,9 +56,9 @@ public class PersonManagementController {
 		 */
 
 		ObservableList<Person> listePersonne = selectAllPersons();
-		
-		
-		
+
+
+
 		tcNom.setCellValueFactory(cellDataFeatures -> cellDataFeatures.getValue().getPersonNomProperty());
 		tcPrenom.setCellValueFactory(cellDataFeatures -> cellDataFeatures.getValue().getPersonPrenomProperty());
 		tvDonnees.setItems(listePersonne);
@@ -87,6 +87,32 @@ public class PersonManagementController {
 			definitionStage.setTitle("Définition d'une personne"); 
 			definitionStage.initModality(Modality.APPLICATION_MODAL);
 			definitionStage.showAndWait(); 
+
+			//Vider la TableView
+			tvDonnees.getItems().clear();
+
+			//Vider l'ObservableList
+			personDonnees.clear();
+
+			//Réinitialiser avec les valeurs de la table Person.
+			ObservableList<Person> listePersonne = selectAllPersons();
+			personDonnees.addAll(listePersonne);
+			tvDonnees.setItems(personDonnees);
+
+			//Vider les zones d’affichage a  droite
+			lblCivilite.setText("");
+			lblNom.setText("");
+			lblPrenom.setText("");
+			lblPortable.setText("");
+			lblEmail.setText("");
+			lblAdresse.setText("");
+			lblCp.setText("");
+			lblVille.setText("");
+			lblDateDeNaissance.setText("");
+
+			// Rendre inactifs les boutons Modifier et Supprimer.  
+			btnModifier.setDisable(true);
+			btnSupprimer.setDisable(true);
 
 			if (controller.isBtnValiderClicked()) {
 				personDonnees.add(controller.getPerson());
@@ -144,6 +170,8 @@ public class PersonManagementController {
 				lblCp.setText(personSelected.getPersonCodePostal());
 				lblVille.setText(personSelected.getPersonVille());
 				lblDateDeNaissance.setText(personSelected.getPersonDateDeNaissance().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL)));
+
+
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -170,14 +198,12 @@ public class PersonManagementController {
 			definitionStage.showAndWait();
 
 			if (controller.isBtnValiderClicked()) {
-				personSelected = controller.getPerson();
+				personDonnees.clear();
+				tvDonnees.getItems().clear();
+				personDonnees = selectAllPersons();
+				tvDonnees.setItems(personDonnees);
 
-				int index = 0;
-				for (Person personSuppr : personDonnees) {
-					if (personSuppr.getPersonId() == personSelected.getPersonId()) break;
-					index++;
-				}
-				personDonnees.remove(index);
+		
 
 				lblCivilite.setText(""); 
 				lblNom.setText(""); 
